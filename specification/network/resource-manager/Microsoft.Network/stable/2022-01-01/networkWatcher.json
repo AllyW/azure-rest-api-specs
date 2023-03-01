@@ -4154,6 +4154,7 @@
         "endpoints": {
           "type": "array",
           "description": "List of connection monitor endpoints.",
+          "x-ms-identifiers": ["name"],
           "items": {
             "$ref": "#/definitions/ConnectionMonitorEndpoint"
           }
@@ -4161,6 +4162,7 @@
         "testConfigurations": {
           "type": "array",
           "description": "List of connection monitor test configurations.",
+          "x-ms-identifiers": ["name"],
           "items": {
             "$ref": "#/definitions/ConnectionMonitorTestConfiguration"
           }
@@ -4168,6 +4170,7 @@
         "testGroups": {
           "type": "array",
           "description": "List of connection monitor test groups.",
+          "x-ms-identifiers": ["name"],
           "items": {
             "$ref": "#/definitions/ConnectionMonitorTestGroup"
           }
