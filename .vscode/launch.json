@@ -22,6 +22,24 @@
       "request": "launch",
       "name": "Launch Program",
       "program": "${file}"
+    },
+    {
+      "name": "tsp compile aaz",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeArgs": ["compile", "${workspaceFolder}/specification/mongocluster/DocumentDB.MongoCluster.Management/main.tsp"],
+      "runtimeExecutable": "tsp",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+    },
+    {
+      "name": "tsp compile community",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeArgs": ["compile", "${workspaceFolder}/specification/communitytraining/Community.Management/main.tsp"],
+      "runtimeExecutable": "tsp",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
     }
   ]
 }
