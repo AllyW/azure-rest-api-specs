@@ -14,6 +14,7 @@ using Azure.ResourceManager;
   title: "Microsoft.Community",
 })
 @versioned(Versions)
+@armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
 namespace Microsoft.Community;
 
 /** Api versions */
@@ -36,7 +37,6 @@ model CommunityTraining is TrackedResource<CommunityTrainingProperties> {
   @path
   name: string;
 
-  ...ResourceSkuProperty;
 }
 
 @doc("The status of the current operation.")
@@ -58,75 +58,15 @@ union ProvisioningState {
   Accepted: "Accepted",
 }
 
-@doc("Details of the Community CommunityTraining Identity Configuration")
-model IdentityConfigurationProperties {
-  @visibility("read", "create", "update")
-  @doc("The identity type of the Community Training Resource")
-  identityType: string;
-
-  @visibility("read", "create", "update")
-  @doc("To indicate whether the Community Training Resource has Teams enabled")
-  teamsEnabled?: boolean = false;
-
-  @visibility("read", "create", "update")
-  @doc("The tenantId of the selected identity provider for the Community Training Resource")
-  tenantId: string;
-
-  @visibility("read", "create", "update")
-  @doc("The domain name of the selected identity provider for the Community Training Resource")
-  domainName: string;
-
-  @visibility("read", "create", "update")
-  @doc("The clientId of the application registered in the selected identity provider for the Community Training Resource")
-  clientId: string;
-
-  @visibility("read", "create", "update")
-  @doc("The client secret of the application registered in the selected identity provider for the Community Training Resource")
-  @secret
-  clientSecret: string;
-
-  @visibility("read", "create", "update")
-  @doc("The name of the authentication policy registered in ADB2C for the Community Training Resource")
-  b2cAuthenticationPolicy?: string;
-
-  @visibility("read", "create", "update")
-  @doc("The name of the password reset policy registered in ADB2C for the Community Training Resource")
-  b2cPasswordResetPolicy?: string;
-
-  @visibility("read", "create", "update")
-  @doc("The custom login parameters for the Community Training Resource")
-  customLoginParameters?: string;
-}
 
 @doc("Details of the Community CommunityTraining.")
 model CommunityTrainingProperties {
   @visibility("read", "create")
   @doc("The portal name (website name) of the Community Training instance")
   portalName: string;
-
-  @visibility("read", "create")
-  @doc("The email address of the portal admin")
-  portalAdminEmailAddress: string;
-
-  @visibility("read", "create")
-  @doc("The organization name of the portal owner")
-  portalOwnerOrganizationName: string;
-
-  @visibility("read", "create")
-  @doc("The email address of the portal owner. Will be used as the primary contact")
-  portalOwnerEmailAddress: string;
-
-  @visibility("read", "create", "update")
-  @doc("The identity configuration of the Community Training resource")
-  identityConfiguration: IdentityConfigurationProperties;
-
-  @visibility("read", "create")
-  @doc("To indicate whether the Community Training instance has Zone Redundancy enabled")
-  zoneRedundancyEnabled: boolean;
-
-  @visibility("read", "create")
-  @doc("To indicate whether the Community Training instance has Disaster Recovery enabled")
-  disasterRecoveryEnabled: boolean;
+  
+  @doc("The status of the last operation.")
+  testProp: PrivateEndpointConnectionProperties;
 
   @visibility("read")
   @doc("The status of the last operation.")
