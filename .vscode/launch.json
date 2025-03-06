@@ -22,6 +22,61 @@
       "request": "launch",
       "name": "Launch Program",
       "program": "${file}"
+    },
+    {
+      "name": "tsp compile aaz arize",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeArgs": ["compile", "${workspaceFolder}/specification/liftrarize/ArizeAi.ObservabilityEval.Management/main.tsp"],
+      "runtimeExecutable": "tsp",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
+      ]
+    },
+    {
+      "name": "tsp compile aaz mongo autorest",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeArgs": [
+        "compile",
+        "${workspaceFolder}/specification/mongocluster/DocumentDB.MongoCluster.Management/main.tsp",
+        "--config",
+        "${workspaceFolder}/specification/mongocluster/DocumentDB.MongoCluster.Management/tspconfig-autorest.yaml"
+      ],
+      "runtimeExecutable": "tsp",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
+      ]
+    },
+    {
+      "name": "tsp compile aaz mongo aaz",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeArgs": [
+        "compile",
+        "${workspaceFolder}/specification/mongocluster/DocumentDB.MongoCluster.Management/main.tsp",
+        "--config",
+        "${workspaceFolder}/specification/mongocluster/DocumentDB.MongoCluster.Management/tspconfig-aaz.yaml"
+      ],
+      "runtimeExecutable": "tsp",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
+      ]
     }
   ]
 }

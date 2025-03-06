@@ -3,6 +3,11 @@ import "@typespec/rest";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
+import "./common.tsp";
+import "./MongoCluster.tsp";
+import "./FirewallRule.tsp";
+import "./PrivateEndpointConnection.tsp";
+import "./Replica.tsp";
 
 using TypeSpec.Versioning;
 using Azure.ResourceManager;
@@ -13,7 +18,6 @@ using Azure.ResourceManager;
 @armProviderNamespace
 @service(#{ title: "MongoClusterManagementClient" })
 @versioned(Versions)
-@armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
 namespace Microsoft.DocumentDB;
 
 /** The available API versions. */
@@ -21,47 +25,24 @@ enum Versions {
   /** Azure Cosmos DB for Mongo vCore clusters api version 2024-03-01-preview. */
   @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
   @useDependency(Azure.Core.Versions.v1_0_Preview_1)
+  @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
   v2024_03_01_preview: "2024-03-01-preview",
 
   /** Azure Cosmos DB for Mongo vCore clusters api version 2024-06-01-preview. */
   @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
   v2024_06_01_preview: "2024-06-01-preview",
 
   /** Azure Cosmos DB for Mongo vCore clusters api version 2024-07-01. */
   @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
   v2024_07_01: "2024-07-01",
 
   /** Azure Cosmos DB for Mongo vCore clusters api version 2024-10-01. */
   @useDependency(Azure.ResourceManager.Versions.v1_0_Preview_1)
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  @armCommonTypesVersion(Azure.ResourceManager.CommonTypes.Versions.v5)
   v2024_10_01_preview: "2024-10-01-preview",
-}
-
-model PrivateEndpointConnectionResource
-  is ProxyResource<PrivateEndpointConnectionProperties> {
-  ...PrivateEndpointConnectionParameter;
-}
-
-@armResourceOperations(PrivateEndpointConnectionResource)
-interface PrivateEndpointConnections {
-  /** List existing private connections */
-  listByMongoCluster is ArmResourceListByParent<PrivateEndpointConnectionResource>;
-  /** Get a specific private connection */
-  get is ArmResourceRead<PrivateEndpointConnectionResource>;
-  /** Create a Private endpoint connection */
-  #suppress "@azure-tools/typespec-azure-core/invalid-final-state" "MUST REMOVE AT NEXT API VERSION UPDATE"
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "Need to support existing 202 response for PUT operations"
-  @Azure.Core.useFinalStateVia("azure-async-operation")
-  create is ArmResourceCreateOrReplaceAsync<
-    PrivateEndpointConnectionResource,
-    Response = ArmAcceptedLroResponse<LroHeaders = ArmLroLocationHeader<FinalResult = PrivateEndpointConnectionResource> &
-      Azure.Core.Foundations.RetryAfterHeader> | ArmResourceUpdatedResponse<PrivateEndpointConnectionResource> | ArmResourceCreatedResponse<
-      PrivateEndpointConnectionResource,
-      LroHeaders = {}
-    >
-  >;
-  /** Delete the private endpoint connection */
-  delete is ArmResourceDeleteWithoutOkAsync<PrivateEndpointConnectionResource>;
 }
