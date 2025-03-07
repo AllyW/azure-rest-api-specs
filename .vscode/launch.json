@@ -39,7 +39,7 @@
       ]
     },
     {
-      "name": "tsp compile aaz mongo autorest",
+      "name": "tsp compile mongo autorest",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeArgs": [
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "name": "tsp compile aaz mongo aaz",
+      "name": "tsp compile mongo aaz",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "runtimeArgs": [
@@ -67,6 +67,26 @@
         "${workspaceFolder}/specification/mongocluster/DocumentDB.MongoCluster.Management/main.tsp",
         "--config",
         "${workspaceFolder}/specification/mongocluster/DocumentDB.MongoCluster.Management/tspconfig-aaz.yaml"
+      ],
+      "runtimeExecutable": "tsp",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist/**/*.js",
+        "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
+      ]
+    },
+    {
+      "name": "tsp compile mongo openapi3",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeArgs": [
+        "compile",
+        "${workspaceFolder}/specification/mongocluster/DocumentDB.MongoCluster.Management/main.tsp",
+        "--config",
+        "${workspaceFolder}/specification/mongocluster/DocumentDB.MongoCluster.Management/tspconfig-openapi3.yaml"
       ],
       "runtimeExecutable": "tsp",
       "skipFiles": ["<node_internals>/**"],
