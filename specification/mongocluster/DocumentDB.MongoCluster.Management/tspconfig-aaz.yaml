@@ -1,0 +1,18 @@
+parameters:
+  "service-dir":
+    default: "sdk/mongocluster"
+emit:
+  - "@azure-tools/typespec-aaz"
+options:
+  "@azure-tools/typespec-autorest":
+    use-read-only-status-schema: true
+    emitter-output-dir: "{project-root}/.."
+    azure-resource-provider-folder: "resource-manager"
+    output-file: "{azure-resource-provider-folder}/{service-name}/{version-status}/{version}/mongoCluster.json"
+  "@azure-tools/typespec-aaz":
+    operation: "get-resources-operations"
+    api-version: "2024-07-01"
+    resources: ["/subscriptions/{}/resourcegroups/{}/providers/microsoft.documentdb/privateendpointconnections"]
+linter:
+  extends:
+    - "@azure-tools/typespec-azure-rulesets/resource-manager"
